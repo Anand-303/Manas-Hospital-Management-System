@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Manage Appointments{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h2 class="mb-4 text-center">Manage Appointments</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Patient</th>
+                                <th>Date & Time</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Update Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for appt in appointments %}
+                            <tr>
+                                <td>{{ appt.patient.username if appt.patient else 'N/A' }}</td>
+                                <td>{{ appt.date.strftime('%Y-%m-%d %H:%M') if appt.date else '' }}</td>
+                                <td>{{ appt.reason }}</td>
+                                <td>{{ appt.status }}</td>
+                                <td>
+                                    <form method="POST" class="d-flex align-items-center">
+                                        <input type="hidden" name="appt_id" value="{{ appt._id }}">
+                                        <select name="status" class="form-select me-2" required>
+                                            <option value="pending" {% if appt.status == 'pending' %}selected{% endif %}>Pending</option>
+                                            <option value="completed" {% if appt.status == 'completed' %}selected{% endif %}>Completed</option>
+                                            <option value="cancelled" {% if appt.status == 'cancelled' %}selected{% endif %}>Cancelled</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <a href="{{ url_for('doctor.dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

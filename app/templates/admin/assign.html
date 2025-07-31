@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Assign Doctors and Beds{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+        <div class="card shadow-sm mt-4 mb-4">
+            <div class="card-body">
+                <h2 class="mb-4 text-center">Assign Doctors and Beds to Patients</h2>
+                <form method="POST" class="mb-4">
+                    <div class="row g-2">
+                        <div class="col-md-4">
+                            <select name="patient_id" class="form-select" required>
+                                <option value="">Select Patient</option>
+                                {% for patient in patients %}
+                                    <option value="{{ patient._id }}">{{ patient.username }} ({{ patient.email }})</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="doctor_id" class="form-select" required>
+                                <option value="">Select Doctor</option>
+                                {% for doctor in doctors %}
+                                    <option value="{{ doctor._id }}">{{ doctor.username }} ({{ doctor.email }})</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="bed_id" class="form-select" required>
+                                <option value="">Select Bed</option>
+                                {% for bed in beds %}
+                                    <option value="{{ bed._id }}">{{ bed.bed_type }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2 w-100">Assign</button>
+                </form>
+            </div>
+        </div>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="mb-3">Current Assignments</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Patient</th>
+                                <th>Doctor</th>
+                                <th>Bed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for assignment in assignments %}
+                            <tr>
+                                <td>{{ assignment.patient.username if assignment.patient else '' }}</td>
+                                <td>{{ assignment.doctor.username if assignment.doctor else 'Not Assigned' }}</td>
+                                <td>{{ assignment.bed.bed_type if assignment.bed else 'Not Assigned' }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

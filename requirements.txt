@@ -1,0 +1,9 @@
+Flask
+Flask-Login
+Flask-WTF
+Flask-PyMongo
+email-validator
+
+#Hospital Management System Day 1 - 
+
+

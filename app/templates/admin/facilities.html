@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Manage Facilities{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+        <div class="card shadow-sm mt-4 mb-4">
+            <div class="card-body">
+                <h2 class="mb-4 text-center">Manage Facilities</h2>
+                <form method="POST" class="mb-4">
+                    <div class="row g-2">
+                        <div class="col-md-4">
+                            <input type="text" name="name" class="form-control" placeholder="Facility Name" required>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" name="description" class="form-control" placeholder="Description" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2 w-100">Add Facility</button>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for facility in facilities %}
+                            <tr>
+                                <td>{{ facility.name }}</td>
+                                <td>{{ facility.description }}</td>
+                                <td>
+                                    <a href="{{ url_for('admin.edit_facility', facility_id=facility._id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <form method="POST" action="{{ url_for('admin.delete_facility', facility_id=facility._id) }}" style="display:inline;">
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Book OPD Appointment{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h2 class="mb-4 text-center">Book OPD Appointment</h2>
+                <form method="POST" class="mb-4">
+                    <div class="mb-3">
+                        <label for="doctor_id" class="form-label">Select Doctor</label>
+                        <select class="form-select" id="doctor_id" name="doctor_id" required>
+                            {% for doctor in doctors %}
+                                <option value="{{ doctor._id }}">{{ doctor.username }} ({{ doctor.email }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Date & Time</label>
+                        <input type="datetime-local" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reason" class="form-label">Reason</label>
+                        <input type="text" class="form-control" id="reason" name="reason" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Book Appointment</button>
+                </form>
+            </div>
+        </div>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="mb-3">Your Appointments</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Doctor</th>
+                                <th>Date & Time</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for appt in appointments %}
+                            <tr>
+                                <td>{{ appt.doctor.username if appt.doctor else 'N/A' }}</td>
+                                <td>{{ appt.date.strftime('%Y-%m-%d %H:%M') if appt.date else '' }}</td>
+                                <td>{{ appt.reason }}</td>
+                                <td>{{ appt.status }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <a href="{{ url_for('patient.dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

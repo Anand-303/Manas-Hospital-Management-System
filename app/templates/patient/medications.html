@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Buy Medication{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h2 class="mb-4 text-center">Buy Medication</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Buy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for med in medications %}
+                            <tr>
+                                <td>{{ med.name }}</td>
+                                <td>{{ med.price }}</td>
+                                <td>{{ med.stock }}</td>
+                                <td>
+                                    <form method="POST" class="d-flex align-items-center">
+                                        <input type="hidden" name="med_id" value="{{ med._id }}">
+                                        <input type="number" name="quantity" min="1" max="{{ med.stock }}" class="form-control me-2" style="width: 80px;" required>
+                                        <button type="submit" class="btn btn-success btn-sm">Buy</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <a href="{{ url_for('patient.dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

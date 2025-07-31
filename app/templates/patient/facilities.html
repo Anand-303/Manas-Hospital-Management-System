@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Manas Hospital Facilities{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h2 class="mb-4 text-center">Manas Hospital Facilities</h2>
+                <ul class="list-group">
+                    {% for facility in facilities %}
+                    <li class="list-group-item">
+                        <strong>{{ facility.name }}</strong><br>
+                        {{ facility.description }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a href="{{ url_for('patient.dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

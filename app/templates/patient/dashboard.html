@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Patient Dashboard{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-4 text-center">Welcome, {{ current_user.username }} <small class="text-muted">(Patient)</small></h2>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <a href="{{ url_for('patient.appointments') }}" class="text-decoration-none">
+                    <div class="card card-hover shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Book OPD Appointment</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="{{ url_for('patient.view_doctors') }}" class="text-decoration-none">
+                    <div class="card card-hover shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">View Available Doctors</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="{{ url_for('patient.check_beds') }}" class="text-decoration-none">
+                    <div class="card card-hover shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Check Bed Availability</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="{{ url_for('patient.view_facilities') }}" class="text-decoration-none">
+                    <div class="card card-hover shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">View Manas Hospital Facilities</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="{{ url_for('patient.buy_medication') }}" class="text-decoration-none">
+                    <div class="card card-hover shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Buy Medication</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="{{ url_for('auth.logout') }}" class="text-decoration-none">
+                    <div class="card card-hover shadow-sm border-danger">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-danger">Logout</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

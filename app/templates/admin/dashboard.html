@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-4 text-center">Welcome, {{ current_user.username }} <small class="text-muted">(Admin)</small></h2>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <a href="{{ url_for('admin.manage_doctors') }}" class="text-decoration-none">
+                    <div class="card card-hover shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Manage Doctors</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="{{ url_for('admin.manage_patients') }}" class="text-decoration-none">
+                    <div class="card card-hover shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Manage Patients</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="{{ url_for('admin.manage_beds') }}" class="text-decoration-none">
+                    <div class="card card-hover shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Manage Beds</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="{{ url_for('admin.manage_facilities') }}" class="text-decoration-none">
+                    <div class="card card-hover shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Manage Facilities</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="{{ url_for('admin.manage_medications') }}" class="text-decoration-none">
+                    <div class="card card-hover shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Manage Medications</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="{{ url_for('admin.assign') }}" class="text-decoration-none">
+                    <div class="card card-hover shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Assign Doctors/Beds</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="{{ url_for('auth.logout') }}" class="text-decoration-none">
+                    <div class="card card-hover shadow-sm border-danger">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-danger">Logout</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
